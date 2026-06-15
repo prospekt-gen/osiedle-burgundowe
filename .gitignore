@@ -1,0 +1,6 @@
+# Dokumenty wewnętrzne — nie publikować
+Strategia i Brief.pdf
+
+# Lokalne narzędzia / stan
+.agent-state/
+.DS_Store
