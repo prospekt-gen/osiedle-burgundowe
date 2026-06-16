@@ -5,23 +5,25 @@ const { useState, useEffect, useRef } = React;
        Każdy <img> ma onError → tło-fallback, więc strona nigdy się nie "rozsypie".
     ========================================================= */
     const IMG = {
-      hero:      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
-      aerial:    'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=1600&q=80',
+      hero:      'BRZE3/4.png',
+      aerial:    'BRZE3/1.png',
       gallery: {
-        ext1:    'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80',
-        ext2:    'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80',
-        int1:    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-        int2:    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-        int3:    'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80',
-        sur1:    'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80',
-        sur2:    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
-        ext3:    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+        ext1:    'BRZE3/5.png',
+        ext2:    'BRZE3/12.png',
+        int1:    'BRZE3/10.png',
+        int2:    'BRZE3/11.png',
+        int3:    'BRZE3/7.png',
+        sur1:    'BRZE3/6.png',
+        sur2:    'BRZE3/15.png',
+        ext3:    'BRZE3/3.png',
       },
       portfolio: {
         kasprowicza: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1000&q=80',
         wierzchucino:'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1000&q=80',
         bsdom:       'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
       },
+      floorPlanA: 'BRZE3/17.png',
+      floorPlanB: 'BRZE3/18.png',
       advisor:   'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80',
       agent:     'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80',
     };
@@ -44,12 +46,12 @@ const { useState, useEffect, useRef } = React;
 
     // Sekcja 3/4 — Domy. Ceny ORIENTACYJNE — do potwierdzenia z aktualnym cennikiem dewelopera.
     const HOUSES_DATA = [
-      { id: '3.0.A.01', name: 'Segment A.01', type: 'Skrajny',   status: 'Dostępny',      area: 86.5,  rooms: 4, plot: 220, price: 789000, polygon: '8,52 30,42 40,58 18,70' },
-      { id: '3.0.A.02', name: 'Segment A.02', type: 'Środkowy',  status: 'Zarezerwowany', area: 84.0,  rooms: 4, plot: 165, price: 759000, polygon: '30,42 52,32 62,48 40,58' },
-      { id: '3.0.A.03', name: 'Segment A.03', type: 'Środkowy',  status: 'Dostępny',      area: 84.0,  rooms: 4, plot: 165, price: 765000, polygon: '52,32 74,22 84,38 62,48' },
-      { id: '3.0.A.04', name: 'Segment A.04', type: 'Skrajny',   status: 'Sprzedany',     area: 88.0,  rooms: 5, plot: 240, price: 815000, polygon: '74,22 94,13 99,30 84,38' },
-      { id: '3.0.B.01', name: 'Segment B.01', type: 'Skrajny',   status: 'Dostępny',      area: 112.0, rooms: 5, plot: 310, price: 985000, polygon: '8,78 30,70 40,86 18,96' },
-      { id: '3.0.B.02', name: 'Segment B.02', type: 'Środkowy',  status: 'Dostępny',      area: 96.5,  rooms: 4, plot: 180, price: 869000, polygon: '30,70 54,60 64,76 40,86' },
+      { id: '3.0.A.01', name: 'Segment A.01', type: 'Skrajny',   status: 'Dostępny',      area: 86.5,  rooms: 4, plot: 220, price: 789000, polygon: '8,52 30,42 40,58 18,70',  variant: 'A' },
+      { id: '3.0.A.02', name: 'Segment A.02', type: 'Środkowy',  status: 'Zarezerwowany', area: 84.0,  rooms: 4, plot: 165, price: 759000, polygon: '30,42 52,32 62,48 40,58',  variant: 'A' },
+      { id: '3.0.A.03', name: 'Segment A.03', type: 'Środkowy',  status: 'Dostępny',      area: 84.0,  rooms: 4, plot: 165, price: 765000, polygon: '52,32 74,22 84,38 62,48',  variant: 'A' },
+      { id: '3.0.A.04', name: 'Segment A.04', type: 'Skrajny',   status: 'Sprzedany',     area: 88.0,  rooms: 5, plot: 240, price: 815000, polygon: '74,22 94,13 99,30 84,38',  variant: 'A' },
+      { id: '3.0.B.01', name: 'Segment B.01', type: 'Skrajny',   status: 'Dostępny',      area: 112.0, rooms: 5, plot: 310, price: 985000, polygon: '8,78 30,70 40,86 18,96',   variant: 'B' },
+      { id: '3.0.B.02', name: 'Segment B.02', type: 'Środkowy',  status: 'Dostępny',      area: 96.5,  rooms: 4, plot: 180, price: 869000, polygon: '30,70 54,60 64,76 40,86',  variant: 'B' },
     ];
 
     const STATUS_META = {
@@ -68,14 +70,14 @@ const { useState, useEffect, useRef } = React;
 
     // Sekcja 5 — Galeria
     const GALLERY = [
-      { src: IMG.gallery.ext1, cat: 'Architektura', label: 'Bryła w nowoczesnej stodole', span: 'lg:col-span-2 lg:row-span-2' },
-      { src: IMG.gallery.int1, cat: 'Wnętrza',      label: 'Salon z otwartą kuchnią',      span: 'lg:col-span-1 lg:row-span-1' },
-      { src: IMG.gallery.sur1, cat: 'Otoczenie',    label: 'Las sosnowy za osiedlem',      span: 'lg:col-span-1 lg:row-span-1' },
-      { src: IMG.gallery.int2, cat: 'Wnętrza',      label: 'Antresola i światło dzienne',  span: 'lg:col-span-1 lg:row-span-2' },
-      { src: IMG.gallery.ext2, cat: 'Architektura', label: 'Elewacja od strony ogrodu',    span: 'lg:col-span-1 lg:row-span-1' },
-      { src: IMG.gallery.sur2, cat: 'Otoczenie',    label: 'Wzniesienia Łódzkie',          span: 'lg:col-span-1 lg:row-span-1' },
+      { src: IMG.gallery.ext1, cat: 'Architektura', label: 'Osiedle z perspektywy',        span: 'lg:col-span-2 lg:row-span-2' },
+      { src: IMG.gallery.int1, cat: 'Wnętrza',      label: 'Gabinet w wieczornym świetle', span: 'lg:col-span-1 lg:row-span-1' },
+      { src: IMG.gallery.sur1, cat: 'Otoczenie',    label: 'Osiedle nocą',                 span: 'lg:col-span-1 lg:row-span-1' },
+      { src: IMG.gallery.int2, cat: 'Wnętrza',      label: 'Salon z biblioteką',           span: 'lg:col-span-1 lg:row-span-2' },
+      { src: IMG.gallery.ext2, cat: 'Architektura', label: 'Fasada nocna',                 span: 'lg:col-span-1 lg:row-span-1' },
+      { src: IMG.gallery.sur2, cat: 'Otoczenie',    label: 'Złota jesień w Nowosolnej',    span: 'lg:col-span-1 lg:row-span-1' },
       { src: IMG.gallery.int3, cat: 'Wnętrza',      label: 'Strefa dzienna wieczorem',     span: 'lg:col-span-2 lg:row-span-1' },
-      { src: IMG.gallery.ext3, cat: 'Architektura', label: 'Taras i strefa wejściowa',     span: 'lg:col-span-1 lg:row-span-1' },
+      { src: IMG.gallery.ext3, cat: 'Architektura', label: 'Strefa wejściowa',             span: 'lg:col-span-1 lg:row-span-1' },
     ];
     const GALLERY_FILTERS = ['Wszystkie', 'Architektura', 'Wnętrza', 'Otoczenie'];
 
@@ -466,7 +468,7 @@ const { useState, useEffect, useRef } = React;
               <div className="flex flex-col md:flex-row justify-between md:items-end mb-12 gap-8" data-reveal>
                 <div>
                   <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">Zobacz, jak tu <span className="italic font-serif text-burgundy">mieszka się.</span></h2>
-                  <p className="text-forest max-w-xl font-light">Architektura, wnętrza i otoczenie. Zdjęcia poglądowe — wkrótce zastąpimy je realizacjami z osiedla.</p>
+                  <p className="text-forest max-w-xl font-light">Architektura, wnętrza i otoczenie. Wizualizacje Osiedla Burgundowe.</p>
                 </div>
                 <div className="flex flex-wrap bg-white p-1.5 rounded-full border border-gray-200 shadow-inner self-start">
                   {GALLERY_FILTERS.map((f) => (
@@ -680,9 +682,9 @@ const { useState, useEffect, useRef } = React;
                     <h2 className="text-4xl font-serif mb-2">{selectedHouse.name}</h2>
                     <p className="text-gray-500 font-mono text-sm">ID LOKALU: {selectedHouse.id}</p>
                   </div>
-                  <div className="w-full bg-white rounded-2xl border border-gray-200 aspect-[4/3] flex items-center justify-center mb-8 shadow-sm relative overflow-hidden group">
-                    <svg viewBox="0 0 100 100" className="w-1/2 h-1/2 stroke-gray-300 group-hover:stroke-burgundy transition-colors duration-500" fill="none" strokeWidth="1"><rect x="20" y="20" width="60" height="60" /><line x1="50" y1="20" x2="50" y2="80" /><line x1="20" y1="50" x2="80" y2="50" /><circle cx="50" cy="50" r="5" fill="#F9F8F4" /></svg>
-                    <span className="absolute bottom-4 text-xs font-bold text-gray-400 tracking-widest uppercase">Podgląd rzutu</span>
+                  <div className="w-full bg-white rounded-2xl border border-gray-200 mb-8 shadow-sm relative overflow-hidden">
+                    <img src={IMG[`floorPlan${selectedHouse.variant}`]} onError={onImgError} alt={`Rzut Wariant ${selectedHouse.variant}`} className="w-full h-auto object-contain" />
+                    <span className="absolute bottom-3 left-4 text-xs font-bold text-gray-400 tracking-widest uppercase">Schemat funkcjonalny · Wariant {selectedHouse.variant}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-y-6 gap-x-12 mb-10">
                     <div className="border-b border-gray-200 pb-3"><div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Typ budynku</div><div className="font-medium">{selectedHouse.type}</div></div>
