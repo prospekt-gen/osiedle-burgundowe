@@ -4,3 +4,8 @@ Strategia i Brief.pdf
 # Lokalne narzędzia / stan
 .agent-state/
 .DS_Store
+
+# Node / build (Babel używany tylko lokalnie do prekompilacji app.jsx → app.js)
+node_modules/
+package-lock.json
+package.json
